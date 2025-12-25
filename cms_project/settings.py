@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'content',
+    'core',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'cms_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +71,30 @@ TEMPLATES = [
         },
     },
 ]
+
+
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [
+#             os.path.join(BASE_DIR, 'templates'),
+#         ],
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#                 'content.context_processors.site_settings',
+#             ],
+#             'loaders': [
+#                 'core.context_processors.site_settings',
+#                 'django.template.loaders.filesystem.Loader',
+#                 'django.template.loaders.app_directories.Loader',],
+#         },
+#     },
+# ]
+
 
 WSGI_APPLICATION = 'cms_project.wsgi.application'
 
